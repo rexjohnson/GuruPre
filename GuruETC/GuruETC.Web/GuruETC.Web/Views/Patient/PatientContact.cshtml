@@ -1,0 +1,296 @@
+﻿@model GuruETC.DB.Patientinfo
+@{
+    ViewBag.Title = "PatientContact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+
+    
+<h2 style="color: #85C440;">
+    PatientContact</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <span>Patient get a mail for set-up an account after fill out this form</span>
+    <fieldset id="wizard-one">
+        <legend>Patientinfo</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name, "Required Patient Name!", new { @style = "color:Red;" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email, "Required Patient Email!", new { @style = "color:Red;" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address2)
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "Required Contact Number!", new { @style = "color:Red;" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DOB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DOB)
+            @Html.ValidationMessageFor(model => model.DOB, "Required Patient DOB!", new { @style = "color:Red;" })
+        </div>
+        <div style="float:right; margin: -44px 30px 0 0;">
+            <input type="button" onclick="nextwizard('wizard-one');" value="Next" />
+       </div>
+    </fieldset>
+    
+    <fieldset id="wizard-two" style="display: none;">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PersonalMotivator)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PersonalMotivator)
+            @Html.ValidationMessageFor(model => model.PersonalMotivator)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MedicalHistory)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.MedicalHistory)
+            @Html.ValidationMessageFor(model => model.MedicalHistory)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientHistorical)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PatientHistorical)
+            @Html.ValidationMessageFor(model => model.PatientHistorical)
+        </div>
+        <p>
+            <input type="button" onclick="next2wizard('wizard-two');" value="Next" />
+        </p>
+        <p>
+            <input type="button" onclick="prevwizard('wizard-two');" value="Previous" />
+        </p>
+    </fieldset>
+    
+    <fieldset id="wizard-three" style="display: none;">
+        <div class="editor-label">
+            <label>
+                Are you confirm to submit this information?</label>
+        </div>
+        <div style="display:none;" id="dvloader" class="editor-label">
+        <img src="../../Images/ajax-loader.gif" alt="Please wait..." />
+        </div>
+        <p>
+            <input type="button" onclick="subwizard('wizard-two');" value="Submit" />
+        </p>
+        <p>
+            <input type="button" onclick="prev2wizard('wizard-two');" value="Back" />
+        </p>
+    </fieldset>
+    
+    <fieldset id="wizard-four" style="display: none;">
+        <div class="editor-label">
+            <label>
+                A mail has been sent to your email regarding setting up an account on our web-site!</label>
+        </div>
+    </fieldset>
+    
+   
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        //        $(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({ animation_speed: 'normal', theme: 'light_square', slideshow: 3000, autoplay_slideshow: true });
+        //        $(".gallery:gt(0) a[rel^='prettyPhoto']").prettyPhoto({ animation_speed: 'fast', slideshow: 10000, hideflash: true });
+
+
+       
+
+        $("#PhoneNumber").keydown(function (event) {
+            // Allow: backspace, delete, tab, escape, and enter
+            if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+            // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+                    event.preventDefault();
+                }
+            }
+        });
+    });
+
+    $(function () {
+        $('#DOB').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1950:2013'
+        });
+    });
+
+
+    function nextwizard(currentWizard) {
+
+        var name = $.trim($('#Name').val());
+        var email = $.trim($('#Email').val());
+        var add1 = $.trim($('#Address1').val());
+        var add2 = $.trim($('#Address2').val());
+        var phone = $.trim($('#PhoneNumber').val());
+        var dob = $.trim($('#DOB').val());
+
+        if (name == '') {
+            $('#Name').next('span').show(200);
+            $('#PhoneNumber').next('span').hide(200);
+            $('#DOB').next('span').hide(200);
+            $('#Email').next('span').hide(200);
+            return false;
+        }
+        if (email == '') {
+            $('#Email').next('span').html('Required Patient Email!');
+            $('#Email').next('span').show(200);
+            $('#DOB').next('span').hide(200);
+            $('#PhoneNumber').next('span').hide(200);
+            $('#Name').next('span').hide(200);
+            return false;
+        }
+        if (email != '') {
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+            if (regex.test(email) == false) {
+
+                $('#Email').next('span').html('Invalid Email!');
+                $('#Email').next('span').show(200);
+                return false;
+            }
+            else {
+                $('#Email').next('span').hide(200);
+            }
+        }
+        if (phone == '') {
+            $('#PhoneNumber').next('span').show(200);
+            $('#Name').next('span').hide(200);
+            $('#DOB').next('span').hide(200);
+            $('#Email').next('span').hide(200);
+            return false;
+        }
+        if (dob == '') {
+            $('#DOB').next('span').show(200);
+            $('#PhoneNumber').next('span').hide(200);
+            $('#Name').next('span').hide(200);
+            $('#Email').next('span').hide(200);
+            return false;
+        }
+        $('#Email').next('span').hide(200);
+        $('#DOB').next('span').hide(200);
+        $('#PhoneNumber').next('span').hide(200);
+        $('#Name').next('span').hide(200);
+        $('#wizard-one').toggle('fast');
+        $('#wizard-two').toggle('fast');
+    }
+
+    function next2wizard(currentWizard) {
+        $('#wizard-two').toggle('fast');
+        $('#wizard-three').toggle('fast');
+    }
+
+    function subwizard(currentWizard) {
+        $('#dvloader').show();
+        var name = $.trim($('#Name').val());
+        var add1 = $.trim($('#Address1').val());
+        var add2 = $.trim($('#Address2').val());
+        var phone = $.trim($('#PhoneNumber').val());
+        var dob = $.trim($('#DOB').val());
+        var medhis = $.trim($('#MedicalHistory').val());
+        var pathis = $.trim($('#PatientHistorical').val());
+        var permot = $.trim($('#PersonalMotivator').val());
+        var email = $.trim($('#Email').val());
+        var obj = {
+            pname: name,
+            padd1: add1,
+            padd2: add2,
+            pphone: phone,
+            pdob: dob,
+            pmedhis: medhis,
+            ppathis: pathis,
+            pemail: email,
+            pmot: permot
+        };
+
+        var json = JSON.stringify(obj);
+        var posturl = "/Patient/PatientContact";
+        $.ajax({
+            type: "POST",
+            url: posturl,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: json,
+            success: function (msg) {
+                if (msg == "Success") {
+                    $('#Name').val('');
+                    $('#Address1').val('');
+                    $('#Address2').val('');
+                    $('#PhoneNumber').val('');
+                    $('#DOB').val('');
+                    $('#MedicalHistory').val('');
+                    $('#PatientHistorical').val('');
+                    $('#wizard-three').toggle('fast');
+                    $('#wizard-four').toggle('fast');
+                    $('#dvloader').hide();
+                }
+                else if (msg = "Exist") {
+                    $('#result').html('Email already exist!').fadeIn('slow').delay(3000).fadeOut('slow');
+                    $('#dvloader').hide();
+                }
+                else {
+                    $('#result').html(msg).fadeIn('slow').delay(3000).fadeOut('slow');
+                    $('#dvloader').hide();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $('#dvloader').hide();
+                $('#result').html('Error, try after some time!').fadeIn('slow').delay(3000).fadeOut('slow');
+            }
+
+        });
+
+
+    }
+
+    function prevwizard(currentWizard) {
+        $('#wizard-two').toggle('fast');
+        $('#wizard-one').toggle('fast');
+    }
+
+    function prev2wizard(currentWizard) {
+        $('#wizard-three').toggle('fast');
+        $('#wizard-two').toggle('fast');
+    }
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

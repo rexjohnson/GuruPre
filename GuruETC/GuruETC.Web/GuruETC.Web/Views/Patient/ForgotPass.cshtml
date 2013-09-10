@@ -1,0 +1,22 @@
+﻿@model GuruETC.Web.Models.PatientModel
+@{
+    ViewBag.Title = "Reset password";
+}
+<h2>
+    Forgot Password</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.ValidationMessage("EmptyEmail")
+    <fieldset>
+        <legend>Forgot Password</legend>
+        @Html.LabelFor(p => p.Email)
+        @Html.TextBoxFor(p => p.Email)
+        <p>
+            <input type="submit" value="Send my password" />
+        </p>
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,116 @@
+﻿@model GuruETC.Web.Models.DoctorModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+     <section id="loginForm">
+    <fieldset>
+        <legend>DoctorManage</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.UserName)
+             @Html.HiddenFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DDOB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DDOB)
+            @Html.ValidationMessageFor(model => model.DDOB)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Practice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Practice)
+            @Html.ValidationMessageFor(model => model.Practice)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+        </fieldset>
+    </section>
+     <section class="social" id="socialLoginForm">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address1)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address2)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Address2)
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+
+        
+        </section>
+        
+
+        
+
+        <p>
+            <input type="submit" onclick="upfirst();" value="Update" />
+        </p>
+        <p>
+            <input type="button" onclick="goBack();" value="Cancel" />
+        </p>
+}
+
+<script>
+    $(function () {
+        $('#DDOB').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1950:2013',
+            dateFormat: 'mm/dd/yy'
+        });
+    });
+
+    function upfirst() {
+        $('.main-content').css('background', '#F7F7F7');
+    }
+
+    function goBack() {
+        $('.main-content').css('background', '#F7F7F7');
+        window.location.href = "/Doctor/DoctorList";
+    }
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

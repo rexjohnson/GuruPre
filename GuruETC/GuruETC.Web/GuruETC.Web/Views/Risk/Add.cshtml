@@ -1,0 +1,98 @@
+﻿@model GuruETC.DB.Risk_Assessment
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<h2 style="color:#85C440;">Health Risk Assessment Question (Add)</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset style="margin:15px 0px 0px 0px; width:67.4%;">
+        <legend>Risk_Assessment</legend>
+
+        <div class="editor-label">
+            <label>Risk Question</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Risk)
+            @Html.ValidationMessageFor(model => model.Risk,"Required Risk Title!")
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Risk_Type)
+        </div>
+        <div class="editor-field" id="mainselection">
+        @Html.DropDownList("list",ViewData["list"] as SelectList)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        
+        <p>
+           @Html.ActionLink("Back to List", "ViewRisk", "", new {@style="float:right; margin:19px 0 0;" })
+            <input type="button" onclick="addRisk();" value="Create" />
+        </p>
+    </fieldset>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "ViewRisk")
+</div>*@
+
+
+<script type="text/javascript">
+    function addRisk() {
+        var r_title = $('#Risk').val();
+        var r_description = $('#Description').val();
+        var r_type = $("#list option:selected").text();
+      
+        var posturl = "/Risk/Add";
+        var obj = {
+            title: r_title,
+            desc: r_description,
+            type: r_type
+        };
+        var json = JSON.stringify(obj);
+        if ($.trim(r_title) != '') {
+            $('#Risk').next('span').hide(200);
+            $.ajax({
+                type: "POST",
+                url: posturl,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: json,
+                success: function (msg) {
+                    if (msg == "Success") {
+                        $('#Risk').val('');
+                        $('#Description').val('');
+                        $('#result').html('Risk added successfully!').fadeIn('slow').delay(3000).fadeOut('slow');
+                     }
+                    else {
+                        $('#result').html('Error, try again!').fadeIn('slow').delay(3000).fadeOut('slow');
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest);
+                }
+
+            });
+        }
+        else {
+            $('#Risk').next('span').css('color', 'Red');
+            $('#Risk').next('span').fadeIn(800);
+         }
+    }
+   
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

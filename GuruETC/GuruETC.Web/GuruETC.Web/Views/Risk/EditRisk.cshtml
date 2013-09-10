@@ -1,0 +1,139 @@
+﻿@model GuruETC.DB.Risk_Assessment
+@{
+    ViewBag.Title = "EditRisk";
+    Layout = null;
+}
+<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+<span id="resultnew" style="color: Red; display: none; font-size: 18px; opacity: 0.76;">
+</span>
+<h2 style="color: #85C440;">
+    Health Risk Assessment Question (Modify)</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset style="margin: 15px 0px 0px 0px; width: 67.4%;">
+        <legend>Risk_Assessment</legend>
+        @Html.HiddenFor(model => model.Id)
+        <div class="editor-label">
+            <label>
+                Risk Question</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Risk)
+            @Html.ValidationMessageFor(model => model.Risk)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Risk_Type)
+        </div>
+        <div class="editor-field" id="mainselection">
+            <select id="list">
+                @foreach (var item in ViewData["list"] as SelectList)
+                {
+                    if (item.Text == Model.Risk_Type)
+                    {
+                    <option selected="true" value="@item.Value">@item.Text</option>
+                    }
+                    else
+                    {
+                    <option value="@item.Value">@item.Text</option>
+                    }
+
+                }
+            </select>
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        <p style="display:none; float: left; text-align: right; width: 88%; margin: 0;" id="loadp">
+        <img src="../../Images/ajax-loader.gif" />
+        </p>
+        <p>
+            <input type="button" onclick="addRisk();" value="Save" />
+        </p>
+    </fieldset>
+}
+<div>
+</div>
+<script type="text/javascript">
+
+
+    function addRisk() {
+        var r_title = $('#Risk').val();
+        var r_description = $('#Description').val();
+        var r_id = $('#Id').val();
+        var r_type = $("#list option:selected").text();
+        var posturl = "/Risk/EditRisk";
+        var obj = {
+            id: r_id,
+            title: r_title,
+            desc: r_description,
+            type: r_type
+        };
+        var json = JSON.stringify(obj);
+        if ($.trim(r_title) != '') {
+            $('#Risk').next('span').hide(200);
+            $('#loadp').show();
+            $.ajax({
+                type: "POST",
+                url: posturl,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: json,
+                success: function (data) {
+                    if (data == "Success") {
+                        var bodyRows = $("#tblview tbody tr");
+                        var count = 0;
+                        bodyRows.each(function () {
+                            if (count != 0) {
+                                var rowgetid = $(this).attr('id');
+                                var getedid = rowgetid.split('_');
+                                if (r_id == getedid[1]) {
+                                    var firstCell = $(this).find('td').eq(0);
+                                    var secondCell = $(this).find('td').eq(1);
+                                    firstCell.html(r_title);
+                                    secondCell.html(r_type);
+                                }
+
+                            }
+                            count = count + 1;
+                        });
+                        $('#result').html('Risk edited successfully!').fadeIn('slow').delay(3000).fadeOut('slow');
+                        $('.reveal-modal-bg').trigger('click');
+                    }
+                    else {
+                        $('#result').html('Error, try again!').fadeIn('slow').delay(3000).fadeOut('slow');
+                        $('#loadp').hide();
+                    }
+
+                    //                    if (msg == "Success") {
+                    ////                        $('#Risk').val('');
+                    ////                        $('#Description').val('');
+                    //                        $('#result').html('Risk edited successfully!').fadeIn('slow').delay(3000).fadeOut('slow');
+                    //                        window.location.reload();
+                    //                    }
+                    //                    else {
+                    //                        $('#result').html('Error, try again!').fadeIn('slow').delay(3000).fadeOut('slow');
+                    //                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest);
+                    $('#loadp').hide();
+                }
+
+            });
+        }
+        else {
+            $('#Risk').next('span').css('color', 'Red');
+            $('#Risk').next('span').fadeIn(800);
+        }
+    }
+   
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

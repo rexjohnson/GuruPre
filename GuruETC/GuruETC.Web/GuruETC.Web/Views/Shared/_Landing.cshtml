@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+   
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet" type="text/css" />
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+</head>
+<body>
+    <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title"><img src="../../Images/GuruLogo_PCS.png" alt="Guru" /></p>
+                </div>
+                <div class="float-right">
+                    
+                   
+                </div>
+            </div>
+        </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix"> <span id="result" style="color:Red; display:none; font-size: 18px; opacity: 0.76;"></span>
+                @RenderBody()
+            </section>
+    </div>
+    <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>
+</body>
+</html>

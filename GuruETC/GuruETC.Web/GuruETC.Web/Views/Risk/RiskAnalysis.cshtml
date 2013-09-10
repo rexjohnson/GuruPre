@@ -1,0 +1,86 @@
+﻿@model GuruETC.Web.Models.RiskCalculator
+@using System.Web.Helpers;
+@{
+    ViewBag.Title = "RiskAnalysis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+    <script src="@Url.Content("~/Scripts/jquery.reveal.js")" type="text/javascript"></script>
+}
+@if (Request.IsAuthenticated)
+{
+
+    <h2 style="color: #FFFFFF;">
+        RiskAnalysis Factor</h2>
+@*<img src="@Url.Action("MyChart","Risk")" />*@
+    
+    try
+    {
+        using (Html.BeginForm())
+        {
+  
+    
+    <div id="animatedResults">
+        <dl>
+            <dt class="rskmar">Periodontal Disease Results (below)</dt>
+            <span class="rskmar">Increasing Negative Impact</span>
+            <div class="rskmar">
+                <hr class="hrclass" />
+                <img class="imgclass" src="../../Images/red.png" /></div>
+            <dd>
+                <span><em style="left:@Model.PeriodontalResult;"></em></span>
+            </dd>
+            <dt class="rskmar">Diabetes Results (below)</dt>
+            <span class="rskmar">Increasing Negative Impact</span>
+            <div class="rskmar">
+                <hr class="hrclass" />
+                <img class="imgclass" src="../../Images/red.png" /></div>
+            <dd>
+                <span><em style="left:@Model.DiabetisResult;"></em></span>
+            </dd>
+            <dt class="rskmar">Sleep Apnea Results (below)</dt>
+            <span class="rskmar">Increasing Negative Impact</span>
+            <div class="rskmar">
+                <hr class="hrclass" />
+                <img class="imgclass" src="../../Images/red.png"  style="margin-top: -1px;"/></div>
+            <dd>
+                <span><em style="left:@Model.SleepResult;"></em></span>
+            </dd>
+        </dl>
+    </div>
+    
+    <div style="width: 37%; float: right; margin: 50px 0 0; text-align: justify;">
+        <span>@Model.Results</span>
+        <div style="float: right; margin: 15px 0 0 10px;">
+            <a href="@Url.Action("Show")"><span style="float: left;">
+                <img src="../../Images/retake.png" /></span> <span>Go Back </span></a>
+        </div>
+        <div style="float: right; margin: 15px 0 0;">
+            <a href="#" class="big-link" data-reveal-id="myModal"><span style="float: left;">
+                <img src="../../Images/read.png" /></span><span>Read Medical Disclaimer</span>
+            </a>
+        </div>
+    </div>
+    
+    <div id="myModal" class="reveal-modal">
+        <h1>
+            Medical Disclaimer</h1>
+        <p style="text-align: justify;">
+            @Model.MedicalDisclaimer
+        </p>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>    
+        }
+    }
+    catch
+    {
+    <script type="text/javascript">
+        $('#animatedResults').html('Error Code(21676):Error Occured! You dont show result directly or may its not your personal result');
+    </script>
+    }
+
+}
+else
+{
+    <span>Error Code(21635): Authentication failed..</span>
+}

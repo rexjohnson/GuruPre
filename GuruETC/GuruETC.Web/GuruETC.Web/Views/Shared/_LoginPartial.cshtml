@@ -1,0 +1,65 @@
+﻿@if (Request.IsAuthenticated && User.IsInRole("Patient"))
+{
+    <text> <span style="color: #FFFFFF;">Hello, @User.Identity.Name</span>
+    @using (Html.BeginForm("LogOff", "Patient", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+            
+        <a style="background:none; color:White; text-decoration:underline;" href="@Url.Action("ShowProfile", "Patient")">
+            Profile</a>
+        <a style="background:none; color:White; text-decoration:underline;" href="@Url.Action("QuestionPart1", "Question")">
+            Test</a>
+         @*<a style="background:none; color:White; text-decoration:underline;" href="@Url.Action("QuestionPart1", "Question")">
+            Last Test</a>*@
+       @* <a style="background:none; color:White; text-decoration:underline;" href="@Url.Action("AssessmentVideos", "Patient")">
+            Assessment Videos</a>*@
+        <a style="background: none; color: White; text-decoration: underline;" href="javascript:document.getElementById('logoutForm').submit()">
+            Log off</a>
+    }
+    </text>
+}
+else if (Request.IsAuthenticated && User.IsInRole("Doctor"))
+{
+    <text> <span style="color: #FFFFFF;">Hello, @User.Identity.Name</span>
+    @using (Html.BeginForm("LogOff", "Patient", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+       
+         <a style="background:none; color:White; text-decoration:underline;" href="@Url.Action("ShowProfile", "Doctor")">
+            Profile</a>
+            <a style="background:none; color:White; text-decoration:underline;" href="@Url.Action("PatientList", "Patient")">
+                Patients List</a>
+           <a style="background:none; color:White; text-decoration:underline;" href="@Url.Action("Register", "Patient")">
+                Invite patient</a>
+            @*  <li>@Html.ActionLink("Register", "Register", "Patient", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+            @* <li>@Html.ActionLink("Log in", "Login", "Patient", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+            <a style="background: none; color: White; text-decoration: underline;" href="javascript:document.getElementById('logoutForm').submit()">
+                Log off</a>
+       
+    }
+    </text>
+}
+else if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{ 
+    <text> <span style="color: #FFFFFF;">Hello, @User.Identity.Name</span>
+    @using (Html.BeginForm("LogOff", "Patient", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+       @* <a style="background:none; color:White; text-decoration:underline;" href="@Url.Action("ViewRisk", "Risk")">
+            Manage</a>*@
+             <a style="background:none; color:White; text-decoration:underline;" href="@Url.Action("AddDoctor", "Doctor")">
+            Register Doctor</a>
+        <a style="background:none; color:White; text-decoration:underline;" href="@Url.Action("DoctorList", "Doctor")">
+            Doctors List</a>
+        @*<a style="background:none; color:White; text-decoration:underline;" href="@Url.Action("AssignRole", "Admin")">
+            Manage Roles</a>*@
+           <a style="background: none; color: White; text-decoration: underline;" href="javascript:document.getElementById('logoutForm').submit()">
+                Log off</a>
+    }
+    </text>
+}
+else
+{ 
+    <li><a id="globalLogin" onclick="loadlogview();" style="background: none; color: White;
+        text-decoration: underline;" href="javascript:void(0);">Log in</a></li>
+}

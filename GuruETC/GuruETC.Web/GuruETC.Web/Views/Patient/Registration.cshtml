@@ -1,0 +1,140 @@
+﻿@model GuruETC.Web.Models.PatientModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+<h2>Registration</h2>
+
+@using (Html.BeginForm("Registration","Patient",FormMethod.Post)) {
+    @Html.ValidationSummary(true)
+    <section id="loginForm">
+    <fieldset>
+   
+    
+        <legend>PatientModel</legend>
+       
+          <div class="editor-label">
+
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.doctorkey)
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+          <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+            <div class="editor-label">
+            @Html.LabelFor(model => model.Address1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+              
+        </div>
+        <div class="editor-field">
+         @Html.EditorFor(model => model.Address2)
+         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DOB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DOB)
+            @Html.ValidationMessageFor(model => model.DOB)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+
+
+
+    </fieldset>
+    </section>
+    <section class="social" id="socialLoginForm">
+     <div class="editor-label">
+            @Html.LabelFor(model => model.PersonalMotivator)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PersonalMotivator, new { @style = "width:25%; min-width:450px; max-width:450px;" })
+            @Html.ValidationMessageFor(model => model.PersonalMotivator)
+        </div>
+     <div class="editor-label">
+            @Html.LabelFor(model => model.MedicalHistory)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.MedicalHistory, new { @style = "width:25%; min-width:450px; max-width:450px;" })
+            @Html.ValidationMessageFor(model => model.MedicalHistory)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientHistorical)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PatientHistorical, new { @style = "width:25%; min-width:450px; max-width:450px;" })
+            @Html.ValidationMessageFor(model => model.PatientHistorical)
+        </div>
+           
+        
+
+         <p style="position:relative; top:100%;">
+            <input type="submit" value="Create" />
+        </p>
+        <p style="float:right;">&nbsp;</p>
+        @*<p style="float:right;">
+           @Html.ActionLink("Back to List", "PatientList")
+        </p>*@
+</section>
+    if (ViewBag.result != "")
+    { 
+    <script type="text/javascript">
+        $('#uniquemsg').html($('<span>@ViewBag.result</span>')).show(20, function () {
+            $('#uniquemsg').show(200).delay(5000).hide(200);
+        });
+
+      </script>
+    }
+}
+
+<script>
+    $(function () {
+        $('#DOB').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1950:2013',
+            dateFormat: 'mm/dd/yy'
+        });
+    });
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Guru-ETC Health Assessment</title>
+    <link href="@Url.Content("~/favi.ico")" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet" type="text/css" />
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <link href="@Url.Content("~/Content/prettyPhoto.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function loadlogview() {
+            $.get('/Patient/Login', function (data) {
+                $('#loginlay').html(data).slideToggle(400, function () {
+                  
+                });
+            });
+        }
+
+
+        function loginsubmit() {
+            var UserName = $('#UserName').val();
+            var Pwd = $('#Password').val();
+            if ($.trim(UserName) == "" || $.trim(Pwd) == "") {
+                $('#loginmsg').html('Enter username & password !');
+                return false;
+            }
+            else {
+                var _login = {
+                    UserName: $.trim(UserName),
+                    Password: $.trim(Pwd)
+                };
+                $.post('/Patient/Login', _login, function (data) {
+                    if (data == "Success") {
+                        window.location.href = "/Patient/Index";
+                    }
+                    else {
+                        $('#loginmsg').html(data);
+                    }
+                });
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="loadAddView" class="reveal-modal">
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <div style="clear: both;">
+    </div>
+    <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title"><img src="../../Images/GuruLogo_PCS.png" alt="Guru" /></p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <div id="loginlay" style="width:auto; color:#91B83C; min-width: 24%; background:#F7F7F7; position: absolute; margin: 0 0 0 -156px; padding: 5px 0 0 6px; z-index:9999; border:1px dashed #85C440;  display:none; box-shadow:1px 2px 2px 3px #CFCFCF; float: right; height:auto;">
+                    </div>
+
+                    @*<nav>
+                        <ul id="menu">
+                          <li>@Html.ActionLink("V", "Index", "Home")</li>
+                           
+                        </ul>
+                    </nav>*@
+                </div>
+                  <div style="clear:both;"></div>
+
+                 
+            </div>
+        </header>
+         <div id="uniquemsg" style="color: #000000;display: none;font-weight: bold;left: 43%;position: relative;width: 50%;">
+                  </div>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix"> 
+                @RenderBody()
+                <span id="result" style="color:Red; display:none; font-size: 18px; opacity: 0.76;"></span>
+            </section>
+    </div>
+    <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+               
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>
+    <div style="clear: both;">
+    </div>
+</body>
+</html>

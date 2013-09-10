@@ -1,0 +1,111 @@
+﻿@model GuruETC.Web.Models.DoctorModel
+
+@{
+    ViewBag.Title = "ShowProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div><a onclick="moveedit();" href="javascript:void(0);" style="float:right;"><img src="../../Images/Modify.png" alt="edit profile" /><span style="float:right; color:#00456F; margin:0px 0px 0px 0px;">Edit Profile</span></a></div>
+<h2>
+    ShowProfile</h2>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <section id="loginForm">
+    <fieldset>
+        <legend>Registeruser</legend>
+        <table id="tblprofile">
+        <tr>
+        <td>
+         @Html.LabelFor(model => model.UserName) 
+        </td>
+        <td class="tblprofiletd">
+         @Html.DisplayFor(model => model.UserName)
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+         @Html.LabelFor(model => model.Name) 
+        </td>
+         <td class="tblprofiletd">
+         @Html.DisplayFor(model => model.Name)
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        @Html.LabelFor(model => model.Email)
+        </td>
+        <td class="tblprofiletd">
+        @Html.DisplayFor(model => model.Email)
+        </td>
+        </tr>
+        <tr>
+        <td>
+       @Html.LabelFor(model => model.DDOB)
+        </td>
+        <td class="tblprofiletd">
+         @Html.DisplayFor(model => model.DDOB)
+        </td>
+        </tr>
+         <tr>
+        <td>
+       @Html.LabelFor(model => model.Practice)
+        </td>
+        <td class="tblprofiletd">
+       @Html.DisplayFor(model => model.Practice)
+        </td>
+        </tr>
+        </table>
+        </fieldset>
+         </section>
+         <section class="social" id="socialLoginForm">
+         <table>
+        <tr>
+        <td>
+        @Html.LabelFor(model => model.Address1)
+        </td>
+         <td class="tblprofiletd">
+       @Html.DisplayFor(model => model.Address1)
+        </td>
+        </tr>
+
+           <tr>
+        <td>
+         @Html.LabelFor(model => model.Address2)
+        </td>
+         <td class="tblprofiletd">
+       @Html.DisplayFor(model => model.Address2)
+        </td>
+        </tr>
+
+         <tr>
+        <td>
+       @Html.LabelFor(model => model.PhoneNumber)
+        </td>
+        <td class="tblprofiletd">
+       @Html.DisplayFor(model => model.PhoneNumber)
+        </td>
+        </tr>
+
+        
+        </table>
+       
+        </section>
+       
+    
+}
+
+<script>
+    function moveedit() {
+        $('.main-content').css('background', '#F7F7F7').show(800, function () {
+            window.location.href = "/Doctor/Profile";
+        });
+    }
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

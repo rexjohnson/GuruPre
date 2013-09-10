@@ -1,0 +1,531 @@
+﻿@model GuruETC.Web.Models.QuestionPart
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="@Url.Content("~/skins/all.css")" rel="stylesheet" type="text/css" />
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts/jquery.icheck.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jQuestion.js")" type="text/javascript"></script>
+}
+@{
+     
+    <div id="Wrapper">
+        <div style="display: block;" id="content_wrapper">
+            <div style="width: 30%;">
+                <span style="position: absolute; top: 15%; left: 50%; opacity: 0.7">
+                    <img src="../../Images/ajax-loader.gif" />
+                    <br />
+                    fetching requesting data....<br />
+                </span>
+            </div>
+        </div>
+        <div id="dvQuestionPart1" style="float: left; width: 960px; display: block;">
+            <input type="button" value="Next" onclick="getFirst();" id="btnFirst1" />
+            <div class="tblQuestion">
+                @{
+                    long? j = 0;
+
+                    foreach (var item in Model.QuestionPart1)
+                    {
+                        if (j != item.CatId)
+                        {
+                  
+                    <h2>
+                        @item.CName</h2>
+                            j = @item.CatId;
+
+                        }
+                    
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input type="checkbox" value="@item.QValue" class="@item.QClass" data-item="@item.CatId" id="@item.QId" name="@item.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item.QName </span>
+                    </div>
+                    
+                       
+                    }
+                }
+            </div>
+            <input type="button" value="Next" onclick="getFirst();" id="btnFirst" />
+        </div>
+        <div id="dvQuestionPart2" style="float: left; width: 960px; display: none;">
+            <div class="tblQuestion">
+                <h2>
+                    Medications, Supplements & Surgeries</h2>
+                @{
+                    long? k = 0;
+
+                    foreach (var item2 in Model.QuestionPart2)
+                    {
+                        if (k != item2.CatId)
+                        {
+                  
+                    <h2>
+                        @item2.CName</h2>
+                            k = @item2.CatId;
+
+                        }
+                    
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input type="checkbox" value="@item2.QValue" class="@item2.QClass" data-item="@item2.CatId" id="@item2.QId" name="@item2.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item2.QName</span>
+                    </div>
+                    
+                       
+                    }
+                }
+            </div>
+            <div class="tblQuestion">
+                <span style="color: #000000; font-size: 20px;">Do you take any Prescription Medications?
+                    If Yes, please enter name and reason for taking below:</span>
+                <table id="meditation" style="width: 100%;">
+                    <tr style="background: #91B83C;">
+                        <td style="width: 78%;">
+                            <span>Medication Name / Reason for Taking</span>
+                        </td>
+                        <td style="width: 12%;">
+                            <span>Date Added</span>
+                        </td>
+                        <td style="width: 10%;">
+                       <span>Options</span>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <span><a style="color: Red;" href="javascript:void(0);" onclick='togglediv("Addmeditation");'>
+                        +Add Meditation</a></span></div>
+                <div id="Addmeditation" style="width: 50%; display: none;">
+                    <input type="text" id="txtmeditation" />
+                    <input type="button" id="txtAddmedi" onclick='savetd("txtmeditation");' value="Add" />
+                </div>
+                <table id="Supliment" style="width: 100%;">
+                    <tr style="background: #91B83C;">
+                        <td style="width: 78%;">
+                            <span>Supplement Name / Reason for Taking</span>
+                        </td>
+                        <td style="width: 12%;">
+                            <span>Date Added</span>
+                        </td>
+                        <td style="width: 10%;">
+                        <span>Options</span>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <span><a style="color: Red;" href="javascript:void(0);" onclick='togglediv("AddSupliment");'>
+                        +Add Supplement</a></span></div>
+                <div id="AddSupliment" style="width: 50%; display: none;">
+                    <input type="text" id="txtSupliment" />
+                    <input type="button" id="txtAddSupl" onclick='savetd("txtSupliment");' value="Add" />
+                </div>
+                <table id="Hospital" style="width: 100%;">
+                    <tr style="background: #91B83C;">
+                        <td style="width: 78%;">
+                            <span>Reason / Date</span>
+                        </td>
+                        <td style="width: 12%;">
+                            <span>Date Added</span>
+                        </td>
+                        <td style="width: 10%;">
+                        <span>Options</span>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <span><a style="color: Red;" href="javascript:void(0);" onclick='togglediv("AddHospital");'>
+                        +Add Hospitalization</a></span></div>
+                <div id="AddHospital" style="width: 50%; display: none;">
+                    <input type="text" id="txtHospital" />
+                    <input type="button" id="txtAddHosp" onclick='savetd("txtHospital");' value="Add" />
+                    <div style="clear: both;">
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both;">
+            </div>
+            <div style="width: 100%;">
+                <input style="float: right;" type="button" value="Next" onclick="getSecond();" id="btnSecond" />
+                <input style="float: right;" type="button" value="Back" onclick="getBackSecond();"
+                    id="btnBackSecond" />
+            </div>
+        </div>
+        <div id="dvQuestionPart3" style="float: left; width: 960px; display: none;">
+            <div class="tblQuestion">
+                <h2>
+                    General Health</h2>
+                @{
+                    long? g = 0;
+
+                    foreach (var item3 in Model.QuestionPart3)
+                    {
+                        if (g != item3.CatId)
+                        {
+                    <h2>@item3.CName</h2>
+                 
+                  
+                            if (item3.CName == "Nutrition & Lifestyle")
+                            {
+                    <div>
+                        <span>How would you rate your diet:</span>
+                        <input id="diet_rating1" type="radio" value="1.1" name="diet_rating" />
+                        <span>Good</span>
+                        <input id="diet_rating2" type="radio" value="1.2" name="diet_rating" />
+                        <span>Fair</span>
+                        <input id="diet_rating3" type="radio" value="1.3" name="diet_rating" />
+                        <span>Poor</span>
+                    </div>
+                            }
+
+
+                            g = @item3.CatId;
+                        }
+                    
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input type="checkbox" value="@item3.QValue" class="@item3.QClass" data-item="@item3.CatId" id="@item3.QId" name="@item3.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item3.QName</span>
+                    </div>
+                    
+                       
+                    }
+                }
+            </div>
+            <div class="tblQuestion">
+                <h2>
+                    Vital Measurements</h2>
+                <div style="width: 55%;">
+                    Weight:
+                    <input class="inputover" type="text" id="txtWeight" />
+                    &nbsp; Height:
+                    <input class="inputover" type="text" id="txtHeight" />
+                    &nbsp; Feet:
+                    <input class="inputover" type="text" id="txtFeet" />
+                    &nbsp; inches</div>
+                @{
+                   
+                    foreach (var item4 in Model.QuestionPart4)
+                    {
+                   
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input type="checkbox" value="@item4.QValue" class="@item4.QClass" data-item="@item4.CatId" id="@item4.QId" name="@item4.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item4.QName</span>
+                    </div>
+                    
+                       
+                    }
+                }
+            </div>
+            <div class="tblQuestion">
+                <h2>
+                    Tobacco, Alcohol & Drugs</h2>
+                @{
+                   
+                    foreach (var item5 in Model.QuestionPart5)
+                    {
+
+
+                        if (@item5.QName == "Current Smoker")
+                        {
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input onclick="csmoker();" onchange="csmoker();" class="@item5.QClass" type="checkbox" data-item="@item5.CatId" value="@item5.QValue" id="@item5.QId" dir="1" name="@item5.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item5.QName</span>
+                        <div id="dvcsmoker" style="display: none;">
+                            Packs per day:
+                            <select id="drppacks" class="txt" name="number_packs_per_day">
+                                <option value="">-----Number of packs per day-----</option>
+                                <option value="4.1">1/2 a pack</option>
+                                <option selected="selected" value="4.2">1/2 to 1 pack</option>
+                                <option value="4.3">1-2 packs</option>
+                                <option value="4.4">2+ packs</option>
+                            </select>
+                        </div>
+                    </div>
+                        }
+                        else if (@item5.QName == "Former Smoker")
+                        {
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input onclick="fsmoker();" type="checkbox" value="@item5.QValue" class="@item5.QClass" data-item="@item5.CatId" id="@item5.QId" dir="1" name="@item5.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item5.QName</span>
+                        <div id="dvfsmoker" style="display: none;">
+                            <span style="display: inline;" id="former_smoker_hidden_questions">- When did you quit?
+                                <input type="text" size="20" id="inpformersmoker" name="former_smoker_quit_date" />
+                            </span>
+                        </div>
+                    </div>
+                        }
+                        else if (@item5.QName == "Currently Chewing Tobacco")
+                        {
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input onclick="ctobacco();" type="checkbox" value="@item5.QValue" class="@item5.QClass" data-item="@item5.CatId" id="@item5.QId" dir="1" name="@item5.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item5.QName</span>
+                        <div id="dvctobacco" style="display: none;">
+                            Cans per day:
+                            <select id="drpcans" class="txt" name="number_cans_per_day">
+                                <option value="">-----Number of cans per day-----</option>
+                                <option value="9.1">1/2 a can</option>
+                                <option selected="selected" value="9.2">1/2 to 1 can</option>
+                                <option value="9.3">1-2 cans</option>
+                                <option value="9.4">2+ cans</option>
+                            </select>
+                        </div>
+                    </div>
+                        }
+                        else if (@item5.QName == "Former Chewer")
+                        {
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input onclick="ftobacco();" type="checkbox" value="@item5.QValue" class="@item5.QClass" data-item="@item5.CatId" id="@item5.QId" dir="1" name="@item5.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item5.QName</span>
+                        <div id="dvftobacco" style="display: none;">
+                            <span style="display: inline;" id="former_tobacco_hidden_questions">- When did you quit?
+                                <input type="text" size="20" id="inpformertobacco" name="former_tobacco_quit_date" />
+                            </span>
+                        </div>
+                    </div>
+                        }
+
+                        else
+                        {
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input type="checkbox" id="@item5.QId" value="@item5.QValue" class="@item5.QClass" data-item="@item5.CatId" name="@item5.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item5.QName</span>
+                    </div>
+                        }
+
+                    }
+                }
+            </div>
+            <div style="clear: both;">
+            </div>
+            <div style="width: 100%;">
+                <input type="hidden" id="hddiet" />
+                <input style="float: right;" type="button" value="Next" onclick="getThird();" id="btnThird" />
+                <input style="float: right;" type="button" value="Back" onclick="getBackThird();"
+                    id="btnBackThird" />
+            </div>
+        </div>
+        <div id="dvQuestionPart6" style="float: left; width: 960px; display: none;">
+            <div class="tblQuestion">
+                @{
+                    long? b = 0;
+
+                    foreach (var item6 in Model.QuestionPart6)
+                    {
+                        if (b != item6.CatId)
+                        {
+                   
+                    <h2>
+                        @item6.CName</h2>
+                            b = @item6.CatId;
+
+                        }
+
+                        if (@item6.QName == "Diabetes")
+                        {
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input onclick="cDiabetes();" type="checkbox" value="@item6.QValue" class="@item6.QClass" data-item="@item6.CatId" id="@item6.QId" dir="1" name="@item6.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item6.QName</span>
+                        <div id="dvcDiabetes" style="display: none;">
+                            <input type="radio" id="diabetes_type1" value="4.1" name="diabetes_type" />
+                            Type 1 (insulin dependent)
+                            <input type="radio" id="diabetes_type2" value="4.2" name="diabetes_type" />
+                            Type 2 (diet and/or medication)
+                            <input type="radio" id="diabetes_type3" value="4.3" name="diabetes_type" />
+                            Type 2 (insulin dependent)
+                        </div>
+                    </div>
+                        }
+                        else
+                        {
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input type="checkbox" id="@item6.QId" value="@item6.QValue" class="@item6.QClass" data-item="@item6.CatId" name="@item6.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item6.QName </span>
+                    </div>
+                        }
+
+
+                    }
+                }
+            </div>
+            <div style="clear: both;">
+            </div>
+            <div style="width: 100%;">
+                <input style="float: right;" type="button" value="Next" onclick="getForth();" id="btnForth" />
+                <input style="float: right;" type="button" value="Back" onclick="getBackForth();"
+                    id="btnBackForth" />
+            </div>
+        </div>
+        <div id="dvQuestionPart7" style="float: left; width: 960px; display: none;">
+            <div class="tblQuestion">
+                @{
+                    long? z = 0;
+
+                    foreach (var item7 in Model.QuestionPart7)
+                    {
+                        if (z != item7.CatId)
+                        {
+                  
+                    <h2>
+                        @item7.CName</h2>
+                            z = @item7.CatId;
+
+                        }
+                    
+                    <div style="width: 50%; padding: 5px 0 0;">
+                        <input type="checkbox" id="@item7.QId" value="@item7.QValue" class="@item7.QClass" data-item="@item7.CatId" name="@item7.CName" />
+                        <span style="padding: 0px 0px 0px 30px;">@item7.QName </span>
+                    </div>
+                    
+                       
+                    }
+                }
+            </div>
+            <div style="clear: both;">
+            </div>
+            <div style="width: 100%;">
+                <input style="float: right;" type="button" value="Finish" onclick="getFinish();"
+                    id="btnFinish" />
+                <input style="float: right;" type="button" value="Back" onclick="getBackFifth();"
+                    id="btnBackFifth" />
+            </div>
+        </div>
+    </div>
+  
+}
+<script type="text/javascript">
+    var eventInterval = '';
+    var AllAnswer = Array();
+    $(window).load(function () {
+        $('input[dir="1"]').each(function () {
+            var getfun = $(this).attr('onclick');
+            $(this).next('.iCheck-helper').attr('onclick', getfun);
+        });
+
+  
+        $('#content_wrapper').height($('#dvQuestionPart1').height());
+      
+        eventInterval = window.setInterval(function () {
+            timeout_trigger();
+        }, 500);
+
+    });
+
+
+    function timeout_trigger() {
+
+        $('#content_wrapper').show();
+        clearInterval(eventInterval);
+        $.ajax({
+            url: '/Question/GetPatientAnswer',
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+
+                if (msg.Answer !== null) {
+
+                    /*get the checked question of patient */
+                    var retl = msg.Answer;
+                    var retval = Array();
+                    retval = retl.split('|');
+                    AllAnswer = retl.split('|');
+                    //                for (var svalue in retval) {
+                    //                    $('div#Wrapper input:[type="checkbox"]').each(function () {
+                    //                        var getid = $(this).attr('id');
+
+                    //                        if (getid == retval[svalue]) {
+                    //                            $('#' + getid).prop('checked', true);
+                    //                            $('input').iCheck({
+                    //                                checkboxClass: 'icheckbox_futurico',
+                    //                                radioClass: 'iradio_futurico',
+                    //                                labelHover: true
+                    //                            });
+                    //                        }
+                    //                    });
+                    //                }
+
+
+                    $('div#dvQuestionPart1 input:[type="checkbox"]').each(function () {
+                        var getid = $(this).attr('value');
+                        if ($.inArray(getid, retval) !== -1) {
+                            $(this).prop('checked', true);
+                            //                        $('input').iCheck({
+                            //                            checkboxClass: 'icheckbox_futurico',
+                            //                            radioClass: 'iradio_futurico',
+                            //                            labelHover: true
+                            //                        });
+                        }
+                    });
+
+
+
+                    /*get the meditation result of patient */
+                    $.each(msg.meditation, function (i, d) {
+                        var delID = d.MedId;
+                        var trId = "tr_" + delID;
+                        var jsonDate = d.Date;
+                        var date = new Date(parseInt(jsonDate.substr(6)));
+
+                        var month = date.getMonth() + 1;
+                        var day = date.getDate();
+                        var output = date.getFullYear() + '/' + (('' + month).length < 2 ? '0' : '') + month + '/' + (('' + day).length < 2 ? '0' : '') + day;
+                        var row = $('<tr id="' + trId + '"><td style="width:80%"><span>' + d.Title + '</span> </td><td style="width:10%">' + output + ' </td><td style="width:10%"><a href="javascript:void(0);" id="' + delID + '" onclick=delpinfo("' + delID + '","meditation")><img src="/Images/cancel.png" alt="delete" /></a> </td></tr>');
+                        $('#meditation').append($(row));
+                    });
+
+                    /*get the Supplement result of patient */
+                    $.each(msg.Supliment, function (i, d) {
+                        var delID = d.SupId;
+                        var trId = "tr_" + delID;
+                        var jsonDate = d.Date;
+                        var date = new Date(parseInt(jsonDate.substr(6)));
+                        var month = date.getMonth() + 1;
+                        var day = date.getDate();
+                        var output = date.getFullYear() + '/' + (('' + month).length < 2 ? '0' : '') + month + '/' + (('' + day).length < 2 ? '0' : '') + day;
+                        var row = $('<tr id="' + trId + '"><td style="width:80%"><span>' + d.Title + '</span> </td><td style="width:10%">' + output + ' </td><td style="width:10%"><a href="javascript:void(0);" id="' + delID + '" onclick=delpinfo("' + delID + '","Supliment")><img src="/Images/cancel.png" alt="delete" /></a> </td></tr>');
+                        $('#Supliment').append($(row));
+                    });
+
+                    /*get the Hospitalization result of patient */
+                    $.each(msg.Hospital, function (i, d) {
+                        var delID = d.HosId;
+                        var trId = "tr_" + delID;
+                        var jsonDate = d.Date;
+                        var date = new Date(parseInt(jsonDate.substr(6)));
+                        var month = date.getMonth() + 1;
+                        var day = date.getDate();
+                        var output = date.getFullYear() + '/' + (('' + month).length < 2 ? '0' : '') + month + '/' + (('' + day).length < 2 ? '0' : '') + day;
+                        var row = $('<tr id="' + trId + '"><td style="width:80%"><span>' + d.Title + '</span> </td><td style="width:10%">' + output + ' </td><td style="width:10%"><a href="javascript:void(0);" id="' + delID + '" onclick=delpinfo("' + delID + '","Hospital")><img src="/Images/cancel.png" alt="delete" /></a> </td></tr>');
+                        $('#Hospital').append($(row));
+                    });
+
+                    $.ajax({
+                        url: '/Question/GetRefreshInfo',
+                        type: 'POST',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (msg) {
+                            $('input').iCheck({
+                                checkboxClass: 'icheckbox_futurico',
+                                radioClass: 'iradio_futurico',
+                                labelHover: true
+                            });
+                            $('#content_wrapper').hide();
+                        }
+                    });
+                }
+                else {
+                    $('#content_wrapper').hide();
+                }
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest);
+            }
+        });
+
+
+
+    }
+
+   
+
+</script>

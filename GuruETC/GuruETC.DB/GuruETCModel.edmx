@@ -1,0 +1,1152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GuruETCModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="GuruETCModelStoreContainer">
+          <EntitySet Name="AdminProfile" EntityType="GuruETCModel.Store.AdminProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="GuruETCModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DietRating" EntityType="GuruETCModel.Store.DietRating" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DoctorProfile" EntityType="GuruETCModel.Store.DoctorProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EncryptedData" EntityType="GuruETCModel.Store.EncryptedData" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PatientExam" EntityType="GuruETCModel.Store.PatientExam" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PatientHospitalized" EntityType="GuruETCModel.Store.PatientHospitalized" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Patientinfo" EntityType="GuruETCModel.Store.Patientinfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PatientMedication" EntityType="GuruETCModel.Store.PatientMedication" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PatientProfile" EntityType="GuruETCModel.Store.PatientProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PatientResultQuestion" EntityType="GuruETCModel.Store.PatientResultQuestion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PatientSupplement" EntityType="GuruETCModel.Store.PatientSupplement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Question" EntityType="GuruETCModel.Store.Question" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RegistrationCode" EntityType="GuruETCModel.Store.RegistrationCode" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Risk_Assessment" EntityType="GuruETCModel.Store.Risk_Assessment" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_DietRating_Category" Association="GuruETCModel.Store.FK_DietRating_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="DietRating" EntitySet="DietRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorProfile_AdminProfile" Association="GuruETCModel.Store.FK_DoctorProfile_AdminProfile">
+            <End Role="AdminProfile" EntitySet="AdminProfile" />
+            <End Role="DoctorProfile" EntitySet="DoctorProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientExam_DoctorProfile" Association="GuruETCModel.Store.FK_PatientExam_DoctorProfile">
+            <End Role="DoctorProfile" EntitySet="DoctorProfile" />
+            <End Role="PatientExam" EntitySet="PatientExam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientExam_PatientProfile" Association="GuruETCModel.Store.FK_PatientExam_PatientProfile">
+            <End Role="PatientProfile" EntitySet="PatientProfile" />
+            <End Role="PatientExam" EntitySet="PatientExam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientHospitalized_PatientResultQuestion" Association="GuruETCModel.Store.FK_PatientHospitalized_PatientResultQuestion">
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestion" />
+            <End Role="PatientHospitalized" EntitySet="PatientHospitalized" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientMedication_PatientResultQuestion" Association="GuruETCModel.Store.FK_PatientMedication_PatientResultQuestion">
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestion" />
+            <End Role="PatientMedication" EntitySet="PatientMedication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientProfile_DoctorProfile" Association="GuruETCModel.Store.FK_PatientProfile_DoctorProfile">
+            <End Role="DoctorProfile" EntitySet="DoctorProfile" />
+            <End Role="PatientProfile" EntitySet="PatientProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientQuestion_DoctorProfile" Association="GuruETCModel.Store.FK_PatientQuestion_DoctorProfile">
+            <End Role="DoctorProfile" EntitySet="DoctorProfile" />
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientQuestion_PatientExam" Association="GuruETCModel.Store.FK_PatientQuestion_PatientExam">
+            <End Role="PatientExam" EntitySet="PatientExam" />
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientQuestion_PatientProfile" Association="GuruETCModel.Store.FK_PatientQuestion_PatientProfile">
+            <End Role="PatientProfile" EntitySet="PatientProfile" />
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientSupplement_PatientResultQuestion" Association="GuruETCModel.Store.FK_PatientSupplement_PatientResultQuestion">
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestion" />
+            <End Role="PatientSupplement" EntitySet="PatientSupplement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Category" Association="GuruETCModel.Store.FK_Question_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistrationCode_Patientinfo" Association="GuruETCModel.Store.FK_RegistrationCode_Patientinfo">
+            <End Role="Patientinfo" EntitySet="Patientinfo" />
+            <End Role="RegistrationCode" EntitySet="RegistrationCode" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AdminProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="UserGuid" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CatId" />
+          </Key>
+          <Property Name="CatId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="250" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="DietRating">
+          <Key>
+            <PropertyRef Name="dietId" />
+          </Key>
+          <Property Name="dietId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="dietName" Type="varchar" MaxLength="150" />
+          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="CatId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="DoctorProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserGuid" Type="uniqueidentifier" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="250" />
+          <Property Name="Address1" Type="varchar(max)" />
+          <Property Name="Address2" Type="varchar(max)" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="Practice" Type="varchar" MaxLength="250" />
+          <Property Name="AdminId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="EncryptedData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="encryptedvalues" Type="varchar(max)" />
+          <Property Name="metadata" Type="varchar" MaxLength="500" />
+          <Property Name="username" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="PatientExam">
+          <Key>
+            <PropertyRef Name="ExamId" />
+          </Key>
+          <Property Name="ExamId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="bigint" />
+          <Property Name="DoctorId" Type="bigint" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PatientHospitalized">
+          <Key>
+            <PropertyRef Name="HospitalizationId" />
+          </Key>
+          <Property Name="HospitalizationId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PHealthId" Type="bigint" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="Title" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Patientinfo">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="Address1" Type="varchar(max)" />
+          <Property Name="Address2" Type="varchar(max)" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="150" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="MedicalHistory" Type="varchar(max)" />
+          <Property Name="PatientHistorical" Type="varchar(max)" />
+          <Property Name="Email" Type="varchar" MaxLength="250" />
+          <Property Name="PersonalMotivator" Type="varchar(max)" />
+          <Property Name="refby" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="PatientMedication">
+          <Key>
+            <PropertyRef Name="MedicationId" />
+          </Key>
+          <Property Name="MedicationId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PHealthId" Type="bigint" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="Title" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="PatientProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserGuid" Type="uniqueidentifier" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="250" />
+          <Property Name="Address1" Type="varchar(max)" />
+          <Property Name="Address2" Type="varchar(max)" />
+          <Property Name="MedicalHistory" Type="varchar(max)" />
+          <Property Name="PersonalHistorical" Type="varchar(max)" />
+          <Property Name="PersonalMotivator" Type="varchar(max)" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="DoctorId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="PatientResultQuestion">
+          <Key>
+            <PropertyRef Name="PHealthId" />
+          </Key>
+          <Property Name="PHealthId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="bigint" />
+          <Property Name="DoctorId" Type="bigint" />
+          <Property Name="ExamId" Type="bigint" />
+          <Property Name="Question" Type="varchar(max)" />
+          <Property Name="Value" Type="varchar(max)" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="Height" Type="float" />
+          <Property Name="feet" Type="float" />
+          <Property Name="Packs" Type="varchar" MaxLength="50" />
+          <Property Name="Cans" Type="varchar" MaxLength="50" />
+          <Property Name="FormerSmoker" Type="varchar" MaxLength="50" />
+          <Property Name="FormerChewer" Type="varchar" MaxLength="50" />
+          <Property Name="dietrating" Type="varchar" MaxLength="50" />
+          <Property Name="Diabetes" Type="varchar" MaxLength="50" />
+          <Property Name="patient_concerns" Type="varchar(max)" />
+          <Property Name="hx_dental" Type="varchar(max)" />
+          <Property Name="hx_medical_ent" Type="varchar(max)" />
+          <Property Name="hx_medical_sleep" Type="varchar(max)" />
+          <Property Name="hx_medications" Type="varchar(max)" />
+          <Property Name="hx_allergies" Type="varchar(max)" />
+          <Property Name="hx_general" Type="varchar(max)" />
+          <Property Name="hx_vitals_labs" Type="varchar(max)" />
+          <Property Name="hx_nutrition_activity" Type="varchar(max)" />
+          <Property Name="hx_tobacco_alcohol" Type="varchar(max)" />
+          <Property Name="hx_medical_cardiovascular" Type="varchar(max)" />
+          <Property Name="hx_medical_endocrine_disorders" Type="varchar(max)" />
+          <Property Name="hx_medical_cancer" Type="varchar(max)" />
+          <Property Name="hx_medical_other_diseases" Type="varchar(max)" />
+          <Property Name="hx_medical_gender_health" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="PatientSupplement">
+          <Key>
+            <PropertyRef Name="SupplementId" />
+          </Key>
+          <Property Name="SupplementId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PHealthId" Type="bigint" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="Title" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QId" />
+          </Key>
+          <Property Name="QId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CatId" Type="bigint" />
+          <Property Name="QuestionName" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Value" Type="varchar" MaxLength="50" />
+          <Property Name="Qclass" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="RegistrationCode">
+          <Key>
+            <PropertyRef Name="codeId" />
+          </Key>
+          <Property Name="codeId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RegCode" Type="uniqueidentifier" />
+          <Property Name="IsAuth" Type="bit" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="PatientInfoId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Risk_Assessment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Risk" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Risk_Type" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_DietRating_Category">
+          <End Role="Category" Type="GuruETCModel.Store.Category" Multiplicity="0..1" />
+          <End Role="DietRating" Type="GuruETCModel.Store.DietRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CatId" />
+            </Principal>
+            <Dependent Role="DietRating">
+              <PropertyRef Name="CatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorProfile_AdminProfile">
+          <End Role="AdminProfile" Type="GuruETCModel.Store.AdminProfile" Multiplicity="0..1" />
+          <End Role="DoctorProfile" Type="GuruETCModel.Store.DoctorProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoctorProfile">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientExam_DoctorProfile">
+          <End Role="DoctorProfile" Type="GuruETCModel.Store.DoctorProfile" Multiplicity="0..1" />
+          <End Role="PatientExam" Type="GuruETCModel.Store.PatientExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientExam">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientExam_PatientProfile">
+          <End Role="PatientProfile" Type="GuruETCModel.Store.PatientProfile" Multiplicity="0..1" />
+          <End Role="PatientExam" Type="GuruETCModel.Store.PatientExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientExam">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientHospitalized_PatientResultQuestion">
+          <End Role="PatientResultQuestion" Type="GuruETCModel.Store.PatientResultQuestion" Multiplicity="0..1" />
+          <End Role="PatientHospitalized" Type="GuruETCModel.Store.PatientHospitalized" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientResultQuestion">
+              <PropertyRef Name="PHealthId" />
+            </Principal>
+            <Dependent Role="PatientHospitalized">
+              <PropertyRef Name="PHealthId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientMedication_PatientResultQuestion">
+          <End Role="PatientResultQuestion" Type="GuruETCModel.Store.PatientResultQuestion" Multiplicity="0..1" />
+          <End Role="PatientMedication" Type="GuruETCModel.Store.PatientMedication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientResultQuestion">
+              <PropertyRef Name="PHealthId" />
+            </Principal>
+            <Dependent Role="PatientMedication">
+              <PropertyRef Name="PHealthId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientProfile_DoctorProfile">
+          <End Role="DoctorProfile" Type="GuruETCModel.Store.DoctorProfile" Multiplicity="0..1" />
+          <End Role="PatientProfile" Type="GuruETCModel.Store.PatientProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientProfile">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientQuestion_DoctorProfile">
+          <End Role="DoctorProfile" Type="GuruETCModel.Store.DoctorProfile" Multiplicity="0..1" />
+          <End Role="PatientResultQuestion" Type="GuruETCModel.Store.PatientResultQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientResultQuestion">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientQuestion_PatientExam">
+          <End Role="PatientExam" Type="GuruETCModel.Store.PatientExam" Multiplicity="0..1" />
+          <End Role="PatientResultQuestion" Type="GuruETCModel.Store.PatientResultQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientExam">
+              <PropertyRef Name="ExamId" />
+            </Principal>
+            <Dependent Role="PatientResultQuestion">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientQuestion_PatientProfile">
+          <End Role="PatientProfile" Type="GuruETCModel.Store.PatientProfile" Multiplicity="0..1" />
+          <End Role="PatientResultQuestion" Type="GuruETCModel.Store.PatientResultQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientResultQuestion">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientSupplement_PatientResultQuestion">
+          <End Role="PatientResultQuestion" Type="GuruETCModel.Store.PatientResultQuestion" Multiplicity="0..1" />
+          <End Role="PatientSupplement" Type="GuruETCModel.Store.PatientSupplement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientResultQuestion">
+              <PropertyRef Name="PHealthId" />
+            </Principal>
+            <Dependent Role="PatientSupplement">
+              <PropertyRef Name="PHealthId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Category">
+          <End Role="Category" Type="GuruETCModel.Store.Category" Multiplicity="0..1" />
+          <End Role="Question" Type="GuruETCModel.Store.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CatId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="CatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistrationCode_Patientinfo">
+          <End Role="Patientinfo" Type="GuruETCModel.Store.Patientinfo" Multiplicity="0..1" />
+          <End Role="RegistrationCode" Type="GuruETCModel.Store.RegistrationCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patientinfo">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="RegistrationCode">
+              <PropertyRef Name="PatientInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GuruETCModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="GuruETCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EncryptedDatas" EntityType="GuruETCModel.EncryptedData" />
+          <EntitySet Name="Patientinfoes" EntityType="GuruETCModel.Patientinfo" />
+          <EntitySet Name="PatientProfiles" EntityType="GuruETCModel.PatientProfile" />
+          <EntitySet Name="RegistrationCodes" EntityType="GuruETCModel.RegistrationCode" />
+          <EntitySet Name="Risk_Assessment" EntityType="GuruETCModel.Risk_Assessment" />
+          <AssociationSet Name="FK_RegistrationCode_Patientinfo" Association="GuruETCModel.FK_RegistrationCode_Patientinfo">
+            <End Role="Patientinfo" EntitySet="Patientinfoes" />
+            <End Role="RegistrationCode" EntitySet="RegistrationCodes" />
+          </AssociationSet>
+          <EntitySet Name="Categories" EntityType="GuruETCModel.Category" />
+          <EntitySet Name="Questions" EntityType="GuruETCModel.Question" />
+          <AssociationSet Name="FK_Question_Category" Association="GuruETCModel.FK_Question_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <EntitySet Name="DietRatings" EntityType="GuruETCModel.DietRating" />
+          <EntitySet Name="DoctorProfiles" EntityType="GuruETCModel.DoctorProfile" />
+          <EntitySet Name="PatientExams" EntityType="GuruETCModel.PatientExam" />
+          <EntitySet Name="PatientHospitalizeds" EntityType="GuruETCModel.PatientHospitalized" />
+          <EntitySet Name="PatientMedications" EntityType="GuruETCModel.PatientMedication" />
+          <EntitySet Name="PatientResultQuestions" EntityType="GuruETCModel.PatientResultQuestion" />
+          <EntitySet Name="PatientSupplements" EntityType="GuruETCModel.PatientSupplement" />
+          <AssociationSet Name="FK_DietRating_Category" Association="GuruETCModel.FK_DietRating_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="DietRating" EntitySet="DietRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientExam_DoctorProfile" Association="GuruETCModel.FK_PatientExam_DoctorProfile">
+            <End Role="DoctorProfile" EntitySet="DoctorProfiles" />
+            <End Role="PatientExam" EntitySet="PatientExams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientQuestion_DoctorProfile" Association="GuruETCModel.FK_PatientQuestion_DoctorProfile">
+            <End Role="DoctorProfile" EntitySet="DoctorProfiles" />
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientExam_PatientProfile" Association="GuruETCModel.FK_PatientExam_PatientProfile">
+            <End Role="PatientProfile" EntitySet="PatientProfiles" />
+            <End Role="PatientExam" EntitySet="PatientExams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientQuestion_PatientExam" Association="GuruETCModel.FK_PatientQuestion_PatientExam">
+            <End Role="PatientExam" EntitySet="PatientExams" />
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientHospitalized_PatientResultQuestion" Association="GuruETCModel.FK_PatientHospitalized_PatientResultQuestion">
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestions" />
+            <End Role="PatientHospitalized" EntitySet="PatientHospitalizeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientMedication_PatientResultQuestion" Association="GuruETCModel.FK_PatientMedication_PatientResultQuestion">
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestions" />
+            <End Role="PatientMedication" EntitySet="PatientMedications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientQuestion_PatientProfile" Association="GuruETCModel.FK_PatientQuestion_PatientProfile">
+            <End Role="PatientProfile" EntitySet="PatientProfiles" />
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientSupplement_PatientResultQuestion" Association="GuruETCModel.FK_PatientSupplement_PatientResultQuestion">
+            <End Role="PatientResultQuestion" EntitySet="PatientResultQuestions" />
+            <End Role="PatientSupplement" EntitySet="PatientSupplements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientProfile_DoctorProfile" Association="GuruETCModel.FK_PatientProfile_DoctorProfile">
+            <End Role="DoctorProfile" EntitySet="DoctorProfiles" />
+            <End Role="PatientProfile" EntitySet="PatientProfiles" />
+          </AssociationSet>
+          <EntitySet Name="AdminProfiles" EntityType="GuruETCModel.AdminProfile" />
+          <AssociationSet Name="FK_DoctorProfile_AdminProfile" Association="GuruETCModel.FK_DoctorProfile_AdminProfile">
+            <End Role="AdminProfile" EntitySet="AdminProfiles" />
+            <End Role="DoctorProfile" EntitySet="DoctorProfiles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EncryptedData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="encryptedvalues" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="metadata" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="username" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Patientinfo">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="Address1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="DOB" Type="DateTime" />
+          <Property Name="MedicalHistory" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="PatientHistorical" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="PersonalMotivator" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RegistrationCodes" Relationship="GuruETCModel.FK_RegistrationCode_Patientinfo" FromRole="Patientinfo" ToRole="RegistrationCode" />
+          <Property Type="Guid" Name="refby" />
+        </EntityType>
+        <EntityType Name="PatientProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserGuid" Type="Guid" />
+          <Property Name="Name" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="Address1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="MedicalHistory" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="PersonalHistorical" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="PersonalMotivator" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="DOB" Type="DateTime" />
+          <NavigationProperty Name="PatientExams" Relationship="GuruETCModel.FK_PatientExam_PatientProfile" FromRole="PatientProfile" ToRole="PatientExam" />
+          <NavigationProperty Name="PatientResultQuestions" Relationship="GuruETCModel.FK_PatientQuestion_PatientProfile" FromRole="PatientProfile" ToRole="PatientResultQuestion" />
+          <Property Type="Int64" Name="DoctorId" />
+          <NavigationProperty Name="DoctorProfile" Relationship="GuruETCModel.FK_PatientProfile_DoctorProfile" FromRole="PatientProfile" ToRole="DoctorProfile" />
+        </EntityType>
+        <EntityType Name="RegistrationCode">
+          <Key>
+            <PropertyRef Name="codeId" />
+          </Key>
+          <Property Name="codeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegCode" Type="Guid" />
+          <Property Name="IsAuth" Type="Boolean" />
+          <Property Name="createdDate" Type="DateTime" />
+          <Property Name="ExpiryDate" Type="DateTime" />
+          <Property Name="PatientInfoId" Type="Int64" />
+          <NavigationProperty Name="Patientinfo" Relationship="GuruETCModel.FK_RegistrationCode_Patientinfo" FromRole="RegistrationCode" ToRole="Patientinfo" />
+        </EntityType>
+        <EntityType Name="Risk_Assessment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Risk" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Risk_Type" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_RegistrationCode_Patientinfo">
+          <End Role="Patientinfo" Type="GuruETCModel.Patientinfo" Multiplicity="0..1" />
+          <End Role="RegistrationCode" Type="GuruETCModel.RegistrationCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patientinfo">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="RegistrationCode">
+              <PropertyRef Name="PatientInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CatId" />
+          </Key>
+          <Property Type="Int64" Name="CatId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CategoryName" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Questions" Relationship="GuruETCModel.FK_Question_Category" FromRole="Category" ToRole="Question" />
+          <NavigationProperty Name="DietRatings" Relationship="GuruETCModel.FK_DietRating_Category" FromRole="Category" ToRole="DietRating" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QId" />
+          </Key>
+          <Property Type="Int64" Name="QId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="CatId" />
+          <Property Type="String" Name="QuestionName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category" Relationship="GuruETCModel.FK_Question_Category" FromRole="Question" ToRole="Category" />
+          <Property Type="String" Name="Value" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Qclass" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Question_Category">
+          <End Type="GuruETCModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="GuruETCModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CatId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="CatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DietRating">
+          <Key>
+            <PropertyRef Name="dietId" />
+          </Key>
+          <Property Type="Int32" Name="dietId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="dietName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="value" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="CatId" />
+          <NavigationProperty Name="Category" Relationship="GuruETCModel.FK_DietRating_Category" FromRole="DietRating" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="DoctorProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Guid" Name="UserGuid" />
+          <Property Type="String" Name="Name" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PhoneNumber" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address1" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address2" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DOB" />
+          <Property Type="String" Name="Practice" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PatientExams" Relationship="GuruETCModel.FK_PatientExam_DoctorProfile" FromRole="DoctorProfile" ToRole="PatientExam" />
+          <NavigationProperty Name="PatientResultQuestions" Relationship="GuruETCModel.FK_PatientQuestion_DoctorProfile" FromRole="DoctorProfile" ToRole="PatientResultQuestion" />
+          <NavigationProperty Name="PatientProfiles" Relationship="GuruETCModel.FK_PatientProfile_DoctorProfile" FromRole="DoctorProfile" ToRole="PatientProfile" />
+          <Property Type="Int64" Name="AdminId" />
+          <NavigationProperty Name="AdminProfile" Relationship="GuruETCModel.FK_DoctorProfile_AdminProfile" FromRole="DoctorProfile" ToRole="AdminProfile" />
+        </EntityType>
+        <EntityType Name="PatientExam">
+          <Key>
+            <PropertyRef Name="ExamId" />
+          </Key>
+          <Property Type="Int64" Name="ExamId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="PatientId" />
+          <Property Type="Int64" Name="DoctorId" />
+          <Property Type="DateTime" Name="Date" />
+          <NavigationProperty Name="DoctorProfile" Relationship="GuruETCModel.FK_PatientExam_DoctorProfile" FromRole="PatientExam" ToRole="DoctorProfile" />
+          <NavigationProperty Name="PatientProfile" Relationship="GuruETCModel.FK_PatientExam_PatientProfile" FromRole="PatientExam" ToRole="PatientProfile" />
+          <NavigationProperty Name="PatientResultQuestions" Relationship="GuruETCModel.FK_PatientQuestion_PatientExam" FromRole="PatientExam" ToRole="PatientResultQuestion" />
+        </EntityType>
+        <EntityType Name="PatientHospitalized">
+          <Key>
+            <PropertyRef Name="HospitalizationId" />
+          </Key>
+          <Property Type="Int64" Name="HospitalizationId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="PHealthId" />
+          <Property Type="DateTime" Name="DateAdded" />
+          <NavigationProperty Name="PatientResultQuestion" Relationship="GuruETCModel.FK_PatientHospitalized_PatientResultQuestion" FromRole="PatientHospitalized" ToRole="PatientResultQuestion" />
+          <Property Type="String" Name="Title" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PatientMedication">
+          <Key>
+            <PropertyRef Name="MedicationId" />
+          </Key>
+          <Property Type="Int64" Name="MedicationId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="PHealthId" />
+          <Property Type="DateTime" Name="DateAdded" />
+          <NavigationProperty Name="PatientResultQuestion" Relationship="GuruETCModel.FK_PatientMedication_PatientResultQuestion" FromRole="PatientMedication" ToRole="PatientResultQuestion" />
+          <Property Type="String" Name="Title" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PatientResultQuestion">
+          <Key>
+            <PropertyRef Name="PHealthId" />
+          </Key>
+          <Property Type="Int64" Name="PHealthId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="PatientId" />
+          <Property Type="Int64" Name="DoctorId" />
+          <Property Type="Int64" Name="ExamId" />
+          <Property Type="String" Name="Question" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Value" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Weight" />
+          <Property Type="Double" Name="Height" />
+          <Property Type="Double" Name="feet" />
+          <Property Type="String" Name="Packs" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Cans" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FormerSmoker" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FormerChewer" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="dietrating" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DoctorProfile" Relationship="GuruETCModel.FK_PatientQuestion_DoctorProfile" FromRole="PatientResultQuestion" ToRole="DoctorProfile" />
+          <NavigationProperty Name="PatientExam" Relationship="GuruETCModel.FK_PatientQuestion_PatientExam" FromRole="PatientResultQuestion" ToRole="PatientExam" />
+          <NavigationProperty Name="PatientHospitalizeds" Relationship="GuruETCModel.FK_PatientHospitalized_PatientResultQuestion" FromRole="PatientResultQuestion" ToRole="PatientHospitalized" />
+          <NavigationProperty Name="PatientMedications" Relationship="GuruETCModel.FK_PatientMedication_PatientResultQuestion" FromRole="PatientResultQuestion" ToRole="PatientMedication" />
+          <NavigationProperty Name="PatientProfile" Relationship="GuruETCModel.FK_PatientQuestion_PatientProfile" FromRole="PatientResultQuestion" ToRole="PatientProfile" />
+          <NavigationProperty Name="PatientSupplements" Relationship="GuruETCModel.FK_PatientSupplement_PatientResultQuestion" FromRole="PatientResultQuestion" ToRole="PatientSupplement" />
+          <Property Type="String" Name="Diabetes" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="patient_concerns" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_dental" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_medical_ent" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_medical_sleep" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_medications" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_allergies" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_general" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_vitals_labs" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_nutrition_activity" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_tobacco_alcohol" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_medical_cardiovascular" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_medical_endocrine_disorders" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_medical_cancer" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_medical_other_diseases" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hx_medical_gender_health" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PatientSupplement">
+          <Key>
+            <PropertyRef Name="SupplementId" />
+          </Key>
+          <Property Type="Int64" Name="SupplementId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="PHealthId" />
+          <Property Type="DateTime" Name="DateAdded" />
+          <NavigationProperty Name="PatientResultQuestion" Relationship="GuruETCModel.FK_PatientSupplement_PatientResultQuestion" FromRole="PatientSupplement" ToRole="PatientResultQuestion" />
+          <Property Type="String" Name="Title" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_DietRating_Category">
+          <End Type="GuruETCModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="GuruETCModel.DietRating" Role="DietRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CatId" />
+            </Principal>
+            <Dependent Role="DietRating">
+              <PropertyRef Name="CatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientExam_DoctorProfile">
+          <End Type="GuruETCModel.DoctorProfile" Role="DoctorProfile" Multiplicity="0..1" />
+          <End Type="GuruETCModel.PatientExam" Role="PatientExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientExam">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientQuestion_DoctorProfile">
+          <End Type="GuruETCModel.DoctorProfile" Role="DoctorProfile" Multiplicity="0..1" />
+          <End Type="GuruETCModel.PatientResultQuestion" Role="PatientResultQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientResultQuestion">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientExam_PatientProfile">
+          <End Type="GuruETCModel.PatientProfile" Role="PatientProfile" Multiplicity="0..1" />
+          <End Type="GuruETCModel.PatientExam" Role="PatientExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientExam">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientQuestion_PatientExam">
+          <End Type="GuruETCModel.PatientExam" Role="PatientExam" Multiplicity="0..1" />
+          <End Type="GuruETCModel.PatientResultQuestion" Role="PatientResultQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientExam">
+              <PropertyRef Name="ExamId" />
+            </Principal>
+            <Dependent Role="PatientResultQuestion">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientHospitalized_PatientResultQuestion">
+          <End Type="GuruETCModel.PatientResultQuestion" Role="PatientResultQuestion" Multiplicity="0..1" />
+          <End Type="GuruETCModel.PatientHospitalized" Role="PatientHospitalized" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientResultQuestion">
+              <PropertyRef Name="PHealthId" />
+            </Principal>
+            <Dependent Role="PatientHospitalized">
+              <PropertyRef Name="PHealthId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientMedication_PatientResultQuestion">
+          <End Type="GuruETCModel.PatientResultQuestion" Role="PatientResultQuestion" Multiplicity="0..1" />
+          <End Type="GuruETCModel.PatientMedication" Role="PatientMedication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientResultQuestion">
+              <PropertyRef Name="PHealthId" />
+            </Principal>
+            <Dependent Role="PatientMedication">
+              <PropertyRef Name="PHealthId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientQuestion_PatientProfile">
+          <End Type="GuruETCModel.PatientProfile" Role="PatientProfile" Multiplicity="0..1" />
+          <End Type="GuruETCModel.PatientResultQuestion" Role="PatientResultQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientResultQuestion">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientSupplement_PatientResultQuestion">
+          <End Type="GuruETCModel.PatientResultQuestion" Role="PatientResultQuestion" Multiplicity="0..1" />
+          <End Type="GuruETCModel.PatientSupplement" Role="PatientSupplement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientResultQuestion">
+              <PropertyRef Name="PHealthId" />
+            </Principal>
+            <Dependent Role="PatientSupplement">
+              <PropertyRef Name="PHealthId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientProfile_DoctorProfile">
+          <End Type="GuruETCModel.DoctorProfile" Role="DoctorProfile" Multiplicity="0..1" />
+          <End Type="GuruETCModel.PatientProfile" Role="PatientProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientProfile">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AdminProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DOB" />
+          <Property Type="Guid" Name="UserGuid" />
+          <NavigationProperty Name="DoctorProfiles" Relationship="GuruETCModel.FK_DoctorProfile_AdminProfile" FromRole="AdminProfile" ToRole="DoctorProfile" />
+        </EntityType>
+        <Association Name="FK_DoctorProfile_AdminProfile">
+          <End Type="GuruETCModel.AdminProfile" Role="AdminProfile" Multiplicity="0..1" />
+          <End Type="GuruETCModel.DoctorProfile" Role="DoctorProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoctorProfile">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GuruETCModelStoreContainer" CdmEntityContainer="GuruETCEntities">
+          <EntitySetMapping Name="EncryptedDatas">
+            <EntityTypeMapping TypeName="GuruETCModel.EncryptedData">
+              <MappingFragment StoreEntitySet="EncryptedData">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="encryptedvalues" ColumnName="encryptedvalues" />
+                <ScalarProperty Name="metadata" ColumnName="metadata" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patientinfoes">
+            <EntityTypeMapping TypeName="GuruETCModel.Patientinfo">
+              <MappingFragment StoreEntitySet="Patientinfo">
+                <ScalarProperty Name="refby" ColumnName="refby" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="MedicalHistory" ColumnName="MedicalHistory" />
+                <ScalarProperty Name="PatientHistorical" ColumnName="PatientHistorical" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PersonalMotivator" ColumnName="PersonalMotivator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientProfiles">
+            <EntityTypeMapping TypeName="GuruETCModel.PatientProfile">
+              <MappingFragment StoreEntitySet="PatientProfile">
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="MedicalHistory" ColumnName="MedicalHistory" />
+                <ScalarProperty Name="PersonalHistorical" ColumnName="PersonalHistorical" />
+                <ScalarProperty Name="PersonalMotivator" ColumnName="PersonalMotivator" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationCodes">
+            <EntityTypeMapping TypeName="GuruETCModel.RegistrationCode">
+              <MappingFragment StoreEntitySet="RegistrationCode">
+                <ScalarProperty Name="codeId" ColumnName="codeId" />
+                <ScalarProperty Name="RegCode" ColumnName="RegCode" />
+                <ScalarProperty Name="IsAuth" ColumnName="IsAuth" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="PatientInfoId" ColumnName="PatientInfoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Risk_Assessment">
+            <EntityTypeMapping TypeName="GuruETCModel.Risk_Assessment">
+              <MappingFragment StoreEntitySet="Risk_Assessment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Risk_Type" ColumnName="Risk_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="GuruETCModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="GuruETCModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Qclass" ColumnName="Qclass" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="QuestionName" ColumnName="QuestionName" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+                <ScalarProperty Name="QId" ColumnName="QId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DietRatings">
+            <EntityTypeMapping TypeName="GuruETCModel.DietRating">
+              <MappingFragment StoreEntitySet="DietRating">
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="dietName" ColumnName="dietName" />
+                <ScalarProperty Name="dietId" ColumnName="dietId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoctorProfiles">
+            <EntityTypeMapping TypeName="GuruETCModel.DoctorProfile">
+              <MappingFragment StoreEntitySet="DoctorProfile">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="Practice" ColumnName="Practice" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientExams">
+            <EntityTypeMapping TypeName="GuruETCModel.PatientExam">
+              <MappingFragment StoreEntitySet="PatientExam">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientHospitalizeds">
+            <EntityTypeMapping TypeName="GuruETCModel.PatientHospitalized">
+              <MappingFragment StoreEntitySet="PatientHospitalized">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="PHealthId" ColumnName="PHealthId" />
+                <ScalarProperty Name="HospitalizationId" ColumnName="HospitalizationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientMedications">
+            <EntityTypeMapping TypeName="GuruETCModel.PatientMedication">
+              <MappingFragment StoreEntitySet="PatientMedication">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="PHealthId" ColumnName="PHealthId" />
+                <ScalarProperty Name="MedicationId" ColumnName="MedicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientResultQuestions">
+            <EntityTypeMapping TypeName="GuruETCModel.PatientResultQuestion">
+              <MappingFragment StoreEntitySet="PatientResultQuestion">
+                <ScalarProperty Name="hx_medical_gender_health" ColumnName="hx_medical_gender_health" />
+                <ScalarProperty Name="hx_medical_other_diseases" ColumnName="hx_medical_other_diseases" />
+                <ScalarProperty Name="hx_medical_cancer" ColumnName="hx_medical_cancer" />
+                <ScalarProperty Name="hx_medical_endocrine_disorders" ColumnName="hx_medical_endocrine_disorders" />
+                <ScalarProperty Name="hx_medical_cardiovascular" ColumnName="hx_medical_cardiovascular" />
+                <ScalarProperty Name="hx_tobacco_alcohol" ColumnName="hx_tobacco_alcohol" />
+                <ScalarProperty Name="hx_nutrition_activity" ColumnName="hx_nutrition_activity" />
+                <ScalarProperty Name="hx_vitals_labs" ColumnName="hx_vitals_labs" />
+                <ScalarProperty Name="hx_general" ColumnName="hx_general" />
+                <ScalarProperty Name="hx_allergies" ColumnName="hx_allergies" />
+                <ScalarProperty Name="hx_medications" ColumnName="hx_medications" />
+                <ScalarProperty Name="hx_medical_sleep" ColumnName="hx_medical_sleep" />
+                <ScalarProperty Name="hx_medical_ent" ColumnName="hx_medical_ent" />
+                <ScalarProperty Name="hx_dental" ColumnName="hx_dental" />
+                <ScalarProperty Name="patient_concerns" ColumnName="patient_concerns" />
+                <ScalarProperty Name="Diabetes" ColumnName="Diabetes" />
+                <ScalarProperty Name="dietrating" ColumnName="dietrating" />
+                <ScalarProperty Name="FormerChewer" ColumnName="FormerChewer" />
+                <ScalarProperty Name="FormerSmoker" ColumnName="FormerSmoker" />
+                <ScalarProperty Name="Cans" ColumnName="Cans" />
+                <ScalarProperty Name="Packs" ColumnName="Packs" />
+                <ScalarProperty Name="feet" ColumnName="feet" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="PHealthId" ColumnName="PHealthId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientSupplements">
+            <EntityTypeMapping TypeName="GuruETCModel.PatientSupplement">
+              <MappingFragment StoreEntitySet="PatientSupplement">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="PHealthId" ColumnName="PHealthId" />
+                <ScalarProperty Name="SupplementId" ColumnName="SupplementId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminProfiles">
+            <EntityTypeMapping TypeName="GuruETCModel.AdminProfile">
+              <MappingFragment StoreEntitySet="AdminProfile">
+                <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="GuruETCModel">
+        <EntityTypeShape EntityType="GuruETCModel.EncryptedData" Width="1.5" PointX="2.75" PointY="4.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="GuruETCModel.Patientinfo" Width="1.5" PointX="0.75" PointY="1" Height="3.1340950520833313" IsExpanded="true" />
+        <EntityTypeShape EntityType="GuruETCModel.PatientProfile" Width="1.5" PointX="4.75" PointY="4.75" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="GuruETCModel.RegistrationCode" Width="1.5" PointX="3" PointY="1.375" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="GuruETCModel.Risk_Assessment" Width="1.5" PointX="5.75" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
+        <AssociationConnector Association="GuruETCModel.FK_RegistrationCode_Patientinfo" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.5574446614583328" />
+          <ConnectorPoint PointX="3" PointY="2.5574446614583328" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="GuruETCModel.Category" Width="1.5" PointX="7.375" PointY="4" Height="1.7879850260416657" />
+        <EntityTypeShape EntityType="GuruETCModel.Question" Width="1.5" PointX="9.625" PointY="3.875" Height="2.3648893229166674" />
+        <AssociationConnector Association="GuruETCModel.FK_Question_Category" >
+          <ConnectorPoint PointX="8.875" PointY="4.9901432291666659" />
+          <ConnectorPoint PointX="9.625" PointY="4.9901432291666659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="GuruETCModel.DietRating" Width="1.5" PointX="9.625" PointY="1" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="GuruETCModel.DoctorProfile" Width="1.5" PointX="4.75" PointY="9" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="GuruETCModel.PatientExam" Width="1.5" PointX="7" PointY="7.25" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="GuruETCModel.PatientHospitalized" Width="1.5" PointX="11.5" PointY="7.75" Height="1.787985026041671" />
+        <EntityTypeShape EntityType="GuruETCModel.PatientMedication" Width="1.5" PointX="11.5" PointY="10.25" Height="1.7879850260416745" />
+        <EntityTypeShape EntityType="GuruETCModel.PatientResultQuestion" Width="1.5" PointX="9.25" PointY="7.75" Height="4.8648079427083317" />
+        <EntityTypeShape EntityType="GuruETCModel.PatientSupplement" Width="1.5" PointX="11.5" PointY="12.875" Height="1.7879850260416674" />
+        <AssociationConnector Association="GuruETCModel.FK_DietRating_Category" >
+          <ConnectorPoint PointX="8.125" PointY="4" />
+          <ConnectorPoint PointX="8.125" PointY="1.9901432291666659" />
+          <ConnectorPoint PointX="9.625" PointY="1.9901432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="GuruETCModel.FK_PatientExam_DoctorProfile" >
+          <ConnectorPoint PointX="6.25" PointY="9.3074446614583337" />
+          <ConnectorPoint PointX="7" PointY="9.3074446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="GuruETCModel.FK_PatientQuestion_DoctorProfile" >
+          <ConnectorPoint PointX="6.25" PointY="11.098043619791667" />
+          <ConnectorPoint PointX="9.25" PointY="11.098043619791667" />
+        </AssociationConnector>
+        <AssociationConnector Association="GuruETCModel.FK_PatientExam_PatientProfile" >
+          <ConnectorPoint PointX="6.25" PointY="7.8554996744791667" />
+          <ConnectorPoint PointX="7" PointY="7.8554996744791667" />
+        </AssociationConnector>
+        <AssociationConnector Association="GuruETCModel.FK_PatientQuestion_PatientExam" >
+          <ConnectorPoint PointX="8.5" PointY="8.6824446614583337" />
+          <ConnectorPoint PointX="9.25" PointY="8.6824446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="GuruETCModel.FK_PatientHospitalized_PatientResultQuestion" >
+          <ConnectorPoint PointX="10.75" PointY="9.170146484375" />
+          <ConnectorPoint PointX="11.5" PointY="9.170146484375" />
+        </AssociationConnector>
+        <AssociationConnector Association="GuruETCModel.FK_PatientMedication_PatientResultQuestion" >
+          <ConnectorPoint PointX="10.75" PointY="11.143992513020837" />
+          <ConnectorPoint PointX="11.5" PointY="11.143992513020837" />
+        </AssociationConnector>
+        <AssociationConnector Association="GuruETCModel.FK_PatientQuestion_PatientProfile" >
+          <ConnectorPoint PointX="6.25" PointY="6.7449446614583337" />
+          <ConnectorPoint PointX="9.40625" PointY="6.7449446614583337" />
+          <ConnectorPoint PointX="9.40625" PointY="7.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="GuruETCModel.FK_PatientSupplement_PatientResultQuestion" >
+          <ConnectorPoint PointX="10" PointY="12.614807942708332" />
+          <ConnectorPoint PointX="10" PointY="13.768992513020834" />
+          <ConnectorPoint PointX="11.5" PointY="13.768992513020834" />
+        </AssociationConnector>
+        <AssociationConnector Association="GuruETCModel.FK_PatientProfile_DoctorProfile" >
+          <ConnectorPoint PointX="5.5" PointY="9" />
+          <ConnectorPoint PointX="5.5" PointY="8.4609993489583335" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="GuruETCModel.AdminProfile" Width="1.5" PointX="1.25" PointY="7.375" Height="1.7879850260416657" />
+        <AssociationConnector Association="GuruETCModel.FK_DoctorProfile_AdminProfile" >
+          <ConnectorPoint PointX="2.75" PointY="9.1776432291666659" />
+          <ConnectorPoint PointX="4.75" PointY="9.1776432291666659" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

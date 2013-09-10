@@ -1,0 +1,137 @@
+﻿@model GuruETC.Web.Models.PatientModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+     <section id="loginForm">
+    <fieldset>
+        <legend>Registeruser</legend>
+
+        <div class="editor-label">
+        @Html.LabelFor(model => model.UserName)  @Html.DisplayFor(model => model.UserName)
+          
+        </div>
+        <div class="editor-field">
+     
+            @Html.HiddenFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address2)
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DOB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DOB)
+            @Html.ValidationMessageFor(model => model.DOB)
+        </div>
+        </fieldset>
+         </section>
+    <section class="social" id="socialLoginForm">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MedicalHistory)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.MedicalHistory)
+            @Html.ValidationMessageFor(model => model.MedicalHistory)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientHistorical)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PatientHistorical)
+            @Html.ValidationMessageFor(model => model.PatientHistorical)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PersonalMotivator)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PersonalMotivator)
+            @Html.ValidationMessageFor(model => model.PersonalMotivator)
+        </div>
+        <div class="editor-label">
+         .
+          </div>
+        </section>
+        
+        <p>
+            <input type="submit" onclick="upfirst();" value="Update" />
+        </p>
+        <p>
+            <input type="button" onclick="goBack();" value="Cancel" />
+        </p>
+    
+}
+
+
+<script>
+    $(function () {
+        $('#DOB').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1950:2013',
+            dateFormat: 'mm/dd/yy'
+        });
+    });
+
+    function upfirst() {
+        $('.main-content').css('background', '#F7F7F7');
+    }
+
+    function goBack() {
+        $('.main-content').css('background', '#F7F7F7');
+        window.location.href = "/Patient/PatientList";
+    }
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
